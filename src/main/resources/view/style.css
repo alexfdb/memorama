@@ -1,0 +1,70 @@
+/* Fondo general */
+.root {
+    -fx-background-color: #f8f9fa; /* Suave gris claro */
+}
+
+/* Textos */
+.text {
+    -fx-font-family: "Arial", sans-serif;
+    -fx-font-size: 14px;
+    -fx-fill: #495057; /* Gris oscuro suave */
+}
+
+/* Botones */
+.button {
+    -fx-background-color: #e3f2fd; /* Azul pastel */
+    -fx-text-fill: #0d47a1; /* Azul oscuro */
+    -fx-font-weight: bold;
+    -fx-border-color: #bbdefb; /* Azul claro */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 8px 15px;
+}
+
+.button:hover {
+    -fx-background-color: #bbdefb; /* Azul más claro al pasar el mouse */
+}
+
+.button:pressed {
+    -fx-background-color: #90caf9; /* Azul más oscuro al presionar */
+}
+
+/* Campos de texto */
+.text-field, .password-field {
+    -fx-background-color: #ffffff; /* Blanco */
+    -fx-border-color: #ced4da; /* Gris claro */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+    -fx-text-fill: #495057; /* Gris oscuro */
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #64b5f6; /* Azul claro al enfocar */
+}
+
+/* Mensajes de texto */
+.text-message {
+    -fx-font-size: 12px;
+    -fx-text-fill: #d32f2f; /* Rojo suave para mensajes de error */
+}
+
+/* VBox */
+.vbox {
+    -fx-spacing: 20px;
+    -fx-padding: 20px;
+}
+
+/* ComboBox */
+.combo-box {
+    -fx-background-color: #ffffff; /* Blanco */
+    -fx-border-color: #ced4da; /* Gris claro */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+    -fx-text-fill: #495057; /* Gris oscuro */
+}
+
+.combo-box:focused {
+    -fx-border-color: #64b5f6; /* Azul claro al enfocar */
+}

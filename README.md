@@ -1,6 +1,6 @@
-# Memorama
+# Quiz
 
-**Memorama** es una aplicación de escritorio desarrollada en Java utilizando JavaFX. Permite a los usuarios registrarse, iniciar sesión y jugar un juego de memoria con diferentes niveles de dificultad.
+**Quiz** es una aplicación de escritorio desarrollada en Java utilizando JavaFX. Permite a los usuarios registrarse, iniciar sesión y jugar un juego de memoria con diferentes niveles de dificultad.
 
 ## Características
 

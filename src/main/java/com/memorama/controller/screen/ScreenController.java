@@ -71,4 +71,13 @@ public abstract class ScreenController {
         changeScreen(button, "/view/profile.fxml", "Perfil");
     }
 
+    /**
+     * Cambia a la pantalla jugar.
+     * 
+     * @param button boton a ejecutar.
+     */
+    protected void playScreen(Button button) {
+        changeScreen(button, "/view/play.fxml", "Jugar");
+    }
+
 }

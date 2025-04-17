@@ -5,6 +5,7 @@ import com.memorama.model.session.SessionModel;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.text.Text;
 
 /**
@@ -15,6 +16,10 @@ public class LevelController extends ScreenController {
 
     @FXML
     private Text textUser;
+    @FXML
+    private ComboBox<String> comboBoxLevel;
+    @FXML
+    private Button buttonPlay;
     @FXML
     private Button buttonProfile;
     @FXML
@@ -27,6 +32,23 @@ public class LevelController extends ScreenController {
         } else {
             textUser.setText("Usuario no identificado");
         }
+        comboBoxLevel.getItems().addAll("Easy", "Medium", "Hard");
+    }
+
+    /**
+     * Selecciona la dificultad.
+     */
+    @FXML
+    public void comboBoxLevelClick() {
+        SessionModel.setLevel(comboBoxLevel.getValue());
+    }
+
+    /**
+     * Cambia a la pantalla jugar.
+     */
+    @FXML
+    public void buttonPlayClick() {
+        playScreen(buttonPlay);
     }
 
     /**

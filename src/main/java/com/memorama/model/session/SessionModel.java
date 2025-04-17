@@ -9,6 +9,7 @@ import com.memorama.model.User;
 public class SessionModel {
 
     private static User user;
+    private static String level;
 
     /**
      * Constructor privado.
@@ -24,6 +25,7 @@ public class SessionModel {
      */
     public static void startSesion(User user) {
         SessionModel.user = user;
+        SessionModel.level = "Medium";
     }
 
     /**
@@ -31,6 +33,7 @@ public class SessionModel {
      */
     public static void endSesion() {
         SessionModel.user = null;
+        SessionModel.level = "Medium";
     }
 
     /**
@@ -40,6 +43,22 @@ public class SessionModel {
      */
     public static User getUser() {
         return (user != null) ? user : null;
+    }
+
+    /**
+     * Muestra ek nivel de la sesion.
+     * @return retorna el nivel de la sesion.
+     */
+    public static String getLevel() {
+        return (level != null) ? level : null;
+    }
+
+    /**
+     * Cambia el nivel de la sesion.
+     * @param level nivel a cambiar.
+     */
+    public static void setLevel(String level) {
+        SessionModel.level = level;
     }
 
 }

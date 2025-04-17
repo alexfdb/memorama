@@ -6,17 +6,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" spacing="40.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@style.css" fx:controller="com.memorama.controller.LevelController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" spacing="40.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.memorama.controller.LevelController">
    <children>
       <Text fx:id="textUser" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" />
-      <ComboBox prefWidth="150.0" promptText="Nivel" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Numero de cartas: 0">
+      <ComboBox fx:id="comboBoxLevel" onAction="#comboBoxLevelClick" prefWidth="150.0" promptText="Nivel" />
+      <Button fx:id="buttonPlay" mnemonicParsing="false" onAction="#buttonPlayClick" text="Jugar">
          <VBox.margin>
-            <Insets top="40.0" />
-         </VBox.margin>
-      </Text>
-      <Button mnemonicParsing="false" text="Jugar" />
+            <Insets top="80.0" />
+         </VBox.margin></Button>
       <Button fx:id="buttonProfile" mnemonicParsing="false" onAction="#buttonProfileClick" text="Perfil">
          <VBox.margin>
             <Insets top="40.0" />

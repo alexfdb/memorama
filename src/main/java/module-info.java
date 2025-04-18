@@ -5,11 +5,11 @@ module com.memorama {
     requires org.controlsfx.controls;
     requires transitive javafx.graphics;
 
-    exports com.memorama;
-    exports com.memorama.model;
-    exports com.memorama.controller;
+    exports com.quiz;
+    exports com.quiz.model;
+    exports com.quiz.controller;
 
-    opens com.memorama to javafx.fxml;
-    opens com.memorama.model to javafx.fxml;
-    opens com.memorama.controller to javafx.fxml;
+    opens com.quiz to javafx.fxml;
+    opens com.quiz.model to javafx.fxml;
+    opens com.quiz.controller to javafx.fxml;
 }

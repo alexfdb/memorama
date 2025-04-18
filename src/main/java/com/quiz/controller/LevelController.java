@@ -17,7 +17,9 @@ public class LevelController extends ScreenController {
     @FXML
     private Text textUser;
     @FXML
-    private Text textAveragePoint;
+    private Text textAnswers;
+    @FXML
+    private Text textHits;
     @FXML
     private ComboBox<String> comboBoxLevel;
     @FXML
@@ -31,7 +33,8 @@ public class LevelController extends ScreenController {
     public void initialize() {
         if (SessionModel.getUser() != null) {
             textUser.setText(SessionModel.getUser().getName());
-            textAveragePoint.setText("Respuestas correctas: " + SessionModel.getUser().getHits());
+            textAnswers.setText("Respuestas realizadas: " + SessionModel.getUser().getAnswers());
+            textHits.setText("Respuestas correctas: " + SessionModel.getUser().getHits());
         } else {
             textUser.setText("Usuario no identificado");
         }
@@ -45,7 +48,8 @@ public class LevelController extends ScreenController {
     @FXML
     public void comboBoxLevelClick() {
         SessionModel.setLevel(comboBoxLevel.getValue());
-        textAveragePoint.setText("Respuestas correctas: " + SessionModel.getUser().getHits());
+        textAnswers.setText("Respuestas realizadas: " + SessionModel.getUser().getAnswers());
+        textHits.setText("Respuestas correctas: " + SessionModel.getUser().getHits());
     }
 
     /**

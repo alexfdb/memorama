@@ -4,9 +4,8 @@ CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     password TEXT NOT NULL,
-    easyAccuracy REAL DEFAULT 0,
-    mediumAccuracy REAL DEFAULT 0,
-    hardAccuracy REAL DEFAULT 0
+    answers INTEGER DEFAULT 0,
+    hits INTEGER DEFAULT 0
 );
 
 DROP TABLE IF EXISTS questions;

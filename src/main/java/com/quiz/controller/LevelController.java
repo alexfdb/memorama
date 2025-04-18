@@ -31,8 +31,7 @@ public class LevelController extends ScreenController {
     public void initialize() {
         if (SessionModel.getUser() != null) {
             textUser.setText(SessionModel.getUser().getName());
-            float accuracy = Float.parseFloat(SessionModel.getAccuracyPercentage().replace("%", ""));
-            textAveragePoint.setText("Porcentaje de acierto: " + String.format("%.2f", accuracy) + "%");
+            textAveragePoint.setText("Respuestas correctas: " + SessionModel.getUser().getHits());
         } else {
             textUser.setText("Usuario no identificado");
         }
@@ -46,8 +45,7 @@ public class LevelController extends ScreenController {
     @FXML
     public void comboBoxLevelClick() {
         SessionModel.setLevel(comboBoxLevel.getValue());
-        float accuracy = Float.parseFloat(SessionModel.getAccuracyPercentage().replace("%", ""));
-        textAveragePoint.setText("Porcentaje de acierto: " + String.format("%.2f", accuracy) + "%");
+        textAveragePoint.setText("Respuestas correctas: " + SessionModel.getUser().getHits());
     }
 
     /**

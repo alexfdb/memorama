@@ -1,10 +1,9 @@
 package com.quiz.controller;
 
-import java.util.Optional;
-
 import com.quiz.controller.screen.ScreenController;
 import com.quiz.model.Question;
 import com.quiz.model.QuestionModel;
+import com.quiz.model.User;
 import com.quiz.model.UserModel;
 import com.quiz.model.session.SessionModel;
 
@@ -42,7 +41,7 @@ public class PlayController extends ScreenController {
     private Integer answers;
     private Integer hits;
     private QuestionModel questionModel;
-    private Optional<Question> optional;
+    private Question question;
 
     public PlayController() {
         this.answers = 0;
@@ -52,14 +51,14 @@ public class PlayController extends ScreenController {
     @FXML
     public void initialize() {
         questionModel = new QuestionModel();
-        optional = questionModel.getRandomQuestion();
+        question = questionModel.getRandomQuestion();
         textUser.setText(SessionModel.getUser().getName());
         textPoint.setText("Respuestas: " + answers.toString() + "/10");
-        textQuestion.setText(optional.get().getQuestionText());
-        buttonAnswer1.setText(optional.get().getAnswer1());
-        buttonAnswer2.setText(optional.get().getAnswer2());
-        buttonAnswer3.setText(optional.get().getAnswer3());
-        buttonAnswer4.setText(optional.get().getAnswer4());
+        textQuestion.setText(question.getQuestionText());
+        buttonAnswer1.setText(question.getAnswer1());
+        buttonAnswer2.setText(question.getAnswer2());
+        buttonAnswer3.setText(question.getAnswer3());
+        buttonAnswer4.setText(question.getAnswer4());
     }
 
     @FXML
@@ -88,15 +87,19 @@ public class PlayController extends ScreenController {
         levelScreen(buttonReturn);
     }
 
+    /**
+     * Comprueba la respuesta dada, cuando llega a diez el juego acaba.
+     * 
+     * @param selectAnswer respuesta seleccionada.
+     */
     private void checkAnswer(int selectAnswer) {
         answers++;
         textPoint.setText("Respuestas: " + answers.toString() + "/10");
-        if (optional.isPresent() && optional.get().getCorrectAnswer() == selectAnswer) {
+        if (question.getCorrectAnswer() == selectAnswer) {
             hits++;
-            textPoint.setText(hits.toString());
         }
         if (answers == 10) {
-            updateAccuracyPercentage();
+            updateUser();
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("¡Juego terminado!");
             alert.setHeaderText(null);
@@ -104,32 +107,20 @@ public class PlayController extends ScreenController {
             alert.showAndWait();
             buttonReturnClick();
         }
-        optional = questionModel.getRandomQuestion();
-        textQuestion.setText(optional.get().getQuestionText());
-        buttonAnswer1.setText(optional.get().getAnswer1());
-        buttonAnswer2.setText(optional.get().getAnswer2());
-        buttonAnswer3.setText(optional.get().getAnswer3());
-        buttonAnswer4.setText(optional.get().getAnswer4());
+        question = questionModel.getRandomQuestion();
+        textQuestion.setText(question.getQuestionText());
+        buttonAnswer1.setText(question.getAnswer1());
+        buttonAnswer2.setText(question.getAnswer2());
+        buttonAnswer3.setText(question.getAnswer3());
+        buttonAnswer4.setText(question.getAnswer4());
     }
 
-    /**
-     * Actualiza el porcentaje de aciertos del usuario.
-     */
-    private void updateAccuracyPercentage() {
-        float accuracyPercentage = ((float) hits / (float) answers) * 100;
-        switch (SessionModel.getLevel().toLowerCase()) {
-            case "easy":
-                SessionModel.getUser().setEasyAccuracy(accuracyPercentage);
-                break;
-            case "medium":
-                SessionModel.getUser().setMediumAccuracy(accuracyPercentage);
-                break;
-            case "hard":
-                SessionModel.getUser().setHardAccuracy(accuracyPercentage);
-                break;
-        }
+    private void updateUser() {
         UserModel userModel = new UserModel();
-        userModel.updateUser(SessionModel.getUser(), SessionModel.getUser());
+        User user = new User(SessionModel.getUser().getName(), SessionModel.getUser().getPassword(),
+                SessionModel.getUser().getAnswers() + answers, SessionModel.getUser().getHits() + hits);
+        userModel.updateUser(SessionModel.getUser(), user);
+        SessionModel.startSesion(user);
     }
 
 }

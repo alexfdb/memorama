@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Optional;
 
 import com.quiz.model.database.DatabaseModel;
 
@@ -26,13 +25,13 @@ public class QuestionModel extends DatabaseModel {
      * 
      * @return retorna la pregunta aleatoria.
      */
-    public Optional<Question> getRandomQuestion() {
+    public Question getRandomQuestion() {
         String query = "SELECT id, question, answer1, answer2, answer3, answer4, correct_answer FROM questions ORDER BY RANDOM() LIMIT 1";
         try (Connection connection = createConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 ResultSet resultSet = preparedStatement.executeQuery()) {
             if (resultSet.next()) {
-                Question question = new Question(
+                return new Question(
                         resultSet.getInt("id"),
                         resultSet.getString("question"),
                         resultSet.getString("answer1"),
@@ -40,12 +39,11 @@ public class QuestionModel extends DatabaseModel {
                         resultSet.getString("answer3"),
                         resultSet.getString("answer4"),
                         resultSet.getInt("correct_answer"));
-                return Optional.of(question);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return Optional.empty();
+        return null;
     }
 
 }

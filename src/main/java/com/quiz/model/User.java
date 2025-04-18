@@ -10,9 +10,8 @@ public class User {
 
     private String name;
     private String password;
-    private float easyAccuracy;
-    private float mediumAccuracy;
-    private float hardAccuracy;
+    private Integer answers;
+    private Integer hits;
 
     /**
      * Constructor por defecto.
@@ -22,7 +21,8 @@ public class User {
 
     /**
      * Constructor solo con nombre y contrasenia.
-     * @param name nombre del usuario.
+     * 
+     * @param name     nombre del usuario.
      * @param password contrasenia del usuario.
      */
     public User(String name, String password) {
@@ -33,19 +33,16 @@ public class User {
     /**
      * Constructor general.
      * 
-     * @param name                nombre del usuario.
-     * @param password            contrasenia del usuario.
-     * @param easyAccuracy   porcentaje de acierto para nivel facil.
-     * @param mediumAccuracy porcentaje de acierto para nivel medio.
-     * @param hardAccuracy   porcentaje de acierto para nivel dificil.
+     * @param name     nombre del usuario.
+     * @param password contrasenia del usuario.
+     * @param answers  respuestas del usuario.
+     * @param hits aciertos del usuario.
      */
-    public User(String name, String password, float easyAccuracy, float mediumAccuracy,
-            float hardAccuracy) {
+    public User(String name, String password, Integer answers, Integer hits) {
         this.name = name;
         this.password = password;
-        this.easyAccuracy = easyAccuracy;
-        this.mediumAccuracy = mediumAccuracy;
-        this.hardAccuracy = hardAccuracy;
+        this.answers = answers;
+        this.hits = hits;
     }
 
     public String getName() {
@@ -64,28 +61,20 @@ public class User {
         this.password = password;
     }
 
-    public float getEasyAccuracy() {
-        return this.easyAccuracy;
+    public Integer getAnswers() {
+        return this.answers;
     }
 
-    public void setEasyAccuracy(float easyAccuracy) {
-        this.easyAccuracy = easyAccuracy;
+    public void setAnswers(Integer answers) {
+        this.answers = answers;
     }
 
-    public float getMediumAccuracy() {
-        return this.mediumAccuracy;
+    public Integer getHits() {
+        return this.hits;
     }
 
-    public void setMediumAccuracy(float mediumAccuracy) {
-        this.mediumAccuracy = mediumAccuracy;
-    }
-
-    public float getHardAccuracy() {
-        return this.hardAccuracy;
-    }
-
-    public void setHardAccuracy(float hardAccuracy) {
-        this.hardAccuracy = hardAccuracy;
+    public void setHits(Integer hits) {
+        this.hits = hits;
     }
 
     @Override
@@ -107,12 +96,11 @@ public class User {
     @Override
     public String toString() {
         return "{" +
-            " name='" + getName() + "'" +
-            ", password='" + getPassword() + "'" +
-            ", easyAccuracy='" + getEasyAccuracy() + "'" +
-            ", mediumAccuracy='" + getMediumAccuracy() + "'" +
-            ", hardAccuracy='" + getHardAccuracy() + "'" +
-            "}";
+                " name='" + getName() + "'" +
+                ", password='" + getPassword() + "'" +
+                ", answers='" + getAnswers() + "'" +
+                ", accuracy='" + getHits() + "'" +
+                "}";
     }
 
 }

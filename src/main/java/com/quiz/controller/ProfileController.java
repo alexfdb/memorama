@@ -54,8 +54,7 @@ public class ProfileController extends ScreenController {
         }
         UserModel userModel = new UserModel();
         User user = new User(textFieldUser.getText(), passwordFieldPassword.getText(),
-                SessionModel.getUser().getEasyAccuracy(), SessionModel.getUser().getMediumAccuracy(),
-                SessionModel.getUser().getHardAccuracy());
+                SessionModel.getUser().getAnswers(), SessionModel.getUser().getHits());
         userModel.updateUser(SessionModel.getUser(), user);
         textMessage.setText("Usuario actualizado");
     }

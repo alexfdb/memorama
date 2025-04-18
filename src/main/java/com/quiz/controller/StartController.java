@@ -1,7 +1,5 @@
 package com.quiz.controller;
 
-import java.util.Optional;
-
 import com.quiz.controller.screen.ScreenController;
 import com.quiz.model.User;
 import com.quiz.model.UserModel;
@@ -39,15 +37,15 @@ public class StartController extends ScreenController {
         textMessage.setText("Credenciales invalidas");
         return;
     }
-    User user = new User(textFieldUser.getText(), passwordFieldPassword.getText());
     UserModel userModel = new UserModel();
-    Optional<User> optionalUser = userModel.readUser(user);
-    if (optionalUser.isEmpty()) {
+    User user = new User(textFieldUser.getText(), passwordFieldPassword.getText());
+    User startUser = userModel.readUser(user);
+    if (startUser == null) {
         textMessage.setText("Credenciales incorrectas");
         return;
     }
     textMessage.setText("");
-    SessionModel.startSesion(optionalUser.get());
+    SessionModel.startSesion(startUser);
     levelScreen(buttonStart);
     }
 

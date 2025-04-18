@@ -1,5 +1,7 @@
 package com.quiz.controller;
 
+import java.util.Optional;
+
 import com.quiz.controller.screen.ScreenController;
 import com.quiz.model.User;
 import com.quiz.model.UserModel;
@@ -33,19 +35,20 @@ public class StartController extends ScreenController {
      */
     @FXML
     public void buttonStartClick() {
-        if (!validateCredentials()) {
-            textMessage.setText("Credenciales invalidas");
-            return;
-        }
-        User user = new User(textFieldUser.getText(), passwordFieldPassword.getText());
-        UserModel userModel = new UserModel();
-        if (userModel.readUser(user).isEmpty()) {
-            textMessage.setText("Credenciales incorrectas");
-            return;
-        }
-        textMessage.setText("");
-        SessionModel.startSesion(user);
-        levelScreen(buttonStart);
+    if (!validateCredentials()) {
+        textMessage.setText("Credenciales invalidas");
+        return;
+    }
+    User user = new User(textFieldUser.getText(), passwordFieldPassword.getText());
+    UserModel userModel = new UserModel();
+    Optional<User> optionalUser = userModel.readUser(user);
+    if (optionalUser.isEmpty()) {
+        textMessage.setText("Credenciales incorrectas");
+        return;
+    }
+    textMessage.setText("");
+    SessionModel.startSesion(optionalUser.get());
+    levelScreen(buttonStart);
     }
 
     /**

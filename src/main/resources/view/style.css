@@ -1,32 +1,29 @@
-/* Fondo general */
-.root {
-    -fx-background-color: #f8f9fa; /* Suave gris claro */
-}
-
-/* Textos */
-.text {
-    -fx-font-family: "Arial", sans-serif;
-    -fx-font-size: 14px;
-    -fx-fill: #495057; /* Gris oscuro suave */
-}
-
 /* Botones */
 .button {
-    -fx-background-color: #e3f2fd; /* Azul pastel */
+    -fx-background-color: linear-gradient(to bottom, #e3f2fd, #bbdefb); /* Degradado azul pastel */
     -fx-text-fill: #0d47a1; /* Azul oscuro */
     -fx-font-weight: bold;
     -fx-border-color: #bbdefb; /* Azul claro */
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
     -fx-padding: 8px 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 1);
+    -fx-transition: all 0.3s ease-in-out;
+    -fx-opacity: 1; /* Asegúrate de que los botones sean visibles */
 }
 
 .button:hover {
-    -fx-background-color: #bbdefb; /* Azul más claro al pasar el mouse */
+    -fx-background-color: linear-gradient(to bottom, #bbdefb, #90caf9); /* Azul más claro */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.5, 0, 2);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
 }
 
 .button:pressed {
-    -fx-background-color: #90caf9; /* Azul más oscuro al presionar */
+    -fx-background-color: #64b5f6; /* Azul más oscuro */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 5, 0.5, 0, 1);
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
 }
 
 /* Campos de texto */
@@ -37,34 +34,11 @@
     -fx-background-radius: 5px;
     -fx-padding: 5px;
     -fx-text-fill: #495057; /* Gris oscuro */
+    -fx-opacity: 1; /* Asegúrate de que los campos de texto sean visibles */
+    -fx-transition: all 0.3s ease-in-out;
 }
 
 .text-field:focused, .password-field:focused {
-    -fx-border-color: #64b5f6; /* Azul claro al enfocar */
-}
-
-/* Mensajes de texto */
-.text-message {
-    -fx-font-size: 12px;
-    -fx-text-fill: #d32f2f; /* Rojo suave para mensajes de error */
-}
-
-/* VBox */
-.vbox {
-    -fx-spacing: 20px;
-    -fx-padding: 20px;
-}
-
-/* ComboBox */
-.combo-box {
-    -fx-background-color: #ffffff; /* Blanco */
-    -fx-border-color: #ced4da; /* Gris claro */
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
-    -fx-padding: 5px;
-    -fx-text-fill: #495057; /* Gris oscuro */
-}
-
-.combo-box:focused {
-    -fx-border-color: #64b5f6; /* Azul claro al enfocar */
+    -fx-border-color: #64b5f6; /* Azul claro */
+    -fx-effect: dropshadow(gaussian, rgba(100, 181, 246, 0.5), 5, 0.5, 0, 1);
 }

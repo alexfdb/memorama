@@ -48,16 +48,19 @@ public class UserModel extends DatabaseModel {
      * @return retorna el usuario buscado.
      */
     public Optional<User> readUser(User user) {
-        String query = "SELECT name, password FROM users WHERE name = ? AND password = ?";
+        String query = "SELECT name, password, easyAccuracy, mediumAccuracy, hardAccuracy FROM users WHERE name = ? AND password = ?";
         try (Connection connection = createConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getPassword());
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     String name = resultSet.getString("name");
                     String password = resultSet.getString("password");
-                    return Optional.of(new User(name, password));
+                    float easyAccuracy = resultSet.getFloat("easyAccuracy");
+                    float mediumAccuracy = resultSet.getFloat("mediumAccuracy");
+                    float hardAccuracy = resultSet.getFloat("hardAccuracy");
+                    return Optional.of(new User(name, password, easyAccuracy, mediumAccuracy, hardAccuracy));
                 }
             }
         } catch (SQLException e) {
@@ -74,13 +77,16 @@ public class UserModel extends DatabaseModel {
      * @return retorna true si el usuario fue actualizado
      */
     public boolean updateUser(User user, User updateUser) {
-        String query = "UPDATE users SET name = ?, password = ? WHERE name = ? AND password = ? ";
+        String query = "UPDATE users SET name = ?, password = ?, easyAccuracy = ?, mediumAccuracy = ?, hardAccuracy = ? WHERE name = ? AND password = ? ";
         try (Connection connection = createConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, updateUser.getName());
             preparedStatement.setString(2, updateUser.getPassword());
-            preparedStatement.setString(3, user.getName());
-            preparedStatement.setString(4, user.getPassword());
+            preparedStatement.setFloat(3, updateUser.getEasyAccuracy());
+            preparedStatement.setFloat(4, updateUser.getMediumAccuracy());
+            preparedStatement.setFloat(5, updateUser.getHardAccuracy());
+            preparedStatement.setString(6, user.getName());
+            preparedStatement.setString(7, user.getPassword());
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {

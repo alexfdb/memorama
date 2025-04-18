@@ -5,6 +5,7 @@ import java.util.Optional;
 import com.quiz.controller.screen.ScreenController;
 import com.quiz.model.Question;
 import com.quiz.model.QuestionModel;
+import com.quiz.model.UserModel;
 import com.quiz.model.session.SessionModel;
 
 import javafx.fxml.FXML;
@@ -18,7 +19,7 @@ import javafx.scene.text.Text;
  * @version 1.0.0
  */
 public class PlayController extends ScreenController {
-    
+
     @FXML
     private Text textUser;
     @FXML
@@ -53,7 +54,7 @@ public class PlayController extends ScreenController {
         questionModel = new QuestionModel();
         optional = questionModel.getRandomQuestion();
         textUser.setText(SessionModel.getUser().getName());
-        textPoint.setText(hits.toString());
+        textPoint.setText("Respuestas: " + answers.toString() + "/10");
         textQuestion.setText(optional.get().getQuestionText());
         buttonAnswer1.setText(optional.get().getAnswer1());
         buttonAnswer2.setText(optional.get().getAnswer2());
@@ -83,16 +84,19 @@ public class PlayController extends ScreenController {
 
     @FXML
     private void buttonReturnClick() {
+        SessionModel.setLevel("Medium");
         levelScreen(buttonReturn);
     }
 
     private void checkAnswer(int selectAnswer) {
         answers++;
-        if(optional.isPresent() && optional.get().getCorrectAnswer() == selectAnswer) {
+        textPoint.setText("Respuestas: " + answers.toString() + "/10");
+        if (optional.isPresent() && optional.get().getCorrectAnswer() == selectAnswer) {
             hits++;
             textPoint.setText(hits.toString());
         }
-        if(answers == 10) {
+        if (answers == 10) {
+            updateAccuracyPercentage();
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("¡Juego terminado!");
             alert.setHeaderText(null);
@@ -106,6 +110,26 @@ public class PlayController extends ScreenController {
         buttonAnswer2.setText(optional.get().getAnswer2());
         buttonAnswer3.setText(optional.get().getAnswer3());
         buttonAnswer4.setText(optional.get().getAnswer4());
+    }
+
+    /**
+     * Actualiza el porcentaje de aciertos del usuario.
+     */
+    private void updateAccuracyPercentage() {
+        float accuracyPercentage = ((float) hits / (float) answers) * 100;
+        switch (SessionModel.getLevel().toLowerCase()) {
+            case "easy":
+                SessionModel.getUser().setEasyAccuracy(accuracyPercentage);
+                break;
+            case "medium":
+                SessionModel.getUser().setMediumAccuracy(accuracyPercentage);
+                break;
+            case "hard":
+                SessionModel.getUser().setHardAccuracy(accuracyPercentage);
+                break;
+        }
+        UserModel userModel = new UserModel();
+        userModel.updateUser(SessionModel.getUser(), SessionModel.getUser());
     }
 
 }

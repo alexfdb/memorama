@@ -1,6 +1,1 @@
-com\memorama\controller\screen\ScreenController.class
-com\memorama\controller\CreateController.class
-com\memorama\controller\StartController.class
 module-info.class
-com\memorama\Main.class
-com\memorama\model\User.class

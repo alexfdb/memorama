@@ -7,11 +7,13 @@ import com.quiz.model.User;
 import com.quiz.model.UserModel;
 import com.quiz.model.session.SessionModel;
 
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 /**
  * @author alexfdb
@@ -42,6 +44,8 @@ public class PlayController extends ScreenController {
     private Integer hits;
     private QuestionModel questionModel;
     private Question question;
+    private Timeline timeline;
+    private int timeRemaining;
 
     public PlayController() {
         this.answers = 0;
@@ -59,6 +63,37 @@ public class PlayController extends ScreenController {
         buttonAnswer2.setText(question.getAnswer2());
         buttonAnswer3.setText(question.getAnswer3());
         buttonAnswer4.setText(question.getAnswer4());
+
+        switch (SessionModel.getLevel().toLowerCase()) {
+            case "easy":
+                timeRemaining = 60;
+                break;
+            case "medium":
+                timeRemaining = 40;
+                break;
+            case "hard":
+                timeRemaining = 20;
+                break;
+            default:
+                timeRemaining = 40;
+                break;
+        }
+
+        textTime.setText("Tiempo: " + timeRemaining + "s");
+
+        timeline = new Timeline(new javafx.animation.KeyFrame(
+                Duration.seconds(1),
+                event -> {
+                    timeRemaining--;
+                    textTime.setText("Tiempo: " + timeRemaining + "s");
+
+                    if (timeRemaining <= 0) {
+                        timeline.stop();
+                        endGame(false);
+                    }
+                }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
 
     @FXML
@@ -99,28 +134,48 @@ public class PlayController extends ScreenController {
             hits++;
         }
         if (answers == 10) {
+            timeline.stop();
             updateUser();
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("¡Juego terminado!");
-            alert.setHeaderText(null);
-            alert.setContentText("Has acertado " + hits);
-            alert.showAndWait();
-            buttonReturnClick();
+            endGame(true);
+        } else {
+            question = questionModel.getRandomQuestion();
+            textQuestion.setText(question.getQuestionText());
+            buttonAnswer1.setText(question.getAnswer1());
+            buttonAnswer2.setText(question.getAnswer2());
+            buttonAnswer3.setText(question.getAnswer3());
+            buttonAnswer4.setText(question.getAnswer4());
         }
-        question = questionModel.getRandomQuestion();
-        textQuestion.setText(question.getQuestionText());
-        buttonAnswer1.setText(question.getAnswer1());
-        buttonAnswer2.setText(question.getAnswer2());
-        buttonAnswer3.setText(question.getAnswer3());
-        buttonAnswer4.setText(question.getAnswer4());
     }
 
+    /**
+     * Actualiza los datos del usuario.
+     */
     private void updateUser() {
         UserModel userModel = new UserModel();
         User user = new User(SessionModel.getUser().getName(), SessionModel.getUser().getPassword(),
                 SessionModel.getUser().getAnswers() + answers, SessionModel.getUser().getHits() + hits);
         userModel.updateUser(SessionModel.getUser(), user);
         SessionModel.startSesion(user);
+    }
+
+    /**
+     * Finaliza el juego.
+     * 
+     * @param victory si es true el usuario gana.
+     */
+    private void endGame(boolean victory) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        if (victory) {
+            alert.setTitle("¡Juego terminado!");
+            alert.setHeaderText(null);
+            alert.setContentText("¡Has ganado! Respuestas correctas: " + hits);
+        } else {
+            alert.setTitle("¡Tiempo agotado!");
+            alert.setHeaderText(null);
+            alert.setContentText("Has perdido. Respuestas correctas: " + hits);
+        }
+        alert.showAndWait();
+        buttonReturnClick();
     }
 
 }

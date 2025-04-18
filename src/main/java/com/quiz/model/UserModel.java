@@ -80,8 +80,8 @@ public class UserModel extends DatabaseModel {
                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, updateUser.getName());
             preparedStatement.setString(2, updateUser.getPassword());
-            preparedStatement.setInt(3, updateUser.getHits());
-            preparedStatement.setInt(4, updateUser.getAnswers());
+            preparedStatement.setInt(3, updateUser.getAnswers());
+            preparedStatement.setInt(4, updateUser.getHits());
             preparedStatement.setString(5, user.getName());
             preparedStatement.setString(6, user.getPassword());
             int rowsAffected = preparedStatement.executeUpdate();

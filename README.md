@@ -1,27 +1,17 @@
-# Quiz
+# Quiz Game
 
-**Quiz** es una aplicación de escritorio desarrollada en Java utilizando JavaFX. Permite a los usuarios registrarse, iniciar sesión y jugar un juego de memoria con diferentes niveles de dificultad.
+¡Bienvenido a **Quiz Game**! Este es un juego de preguntas y respuestas desarrollado en Java utilizando JavaFX para la interfaz gráfica y SQLite como base de datos.
 
 ## Características
 
-- **Gestión de usuarios**:
-  - Registro de nuevos usuarios.
-  - Inicio de sesión con validación de credenciales.
-  - Actualización y eliminación de cuentas.
-  - Cierre de sesión.
-
-- **Juego de memoria**:
-  - Selección de nivel de dificultad.
-  - Interfaz gráfica amigable con tonos suaves.
-
-- **Base de datos SQLite**:
-  - Almacenamiento seguro de usuarios y contraseñas.
-
-- **Diseño moderno**:
-  - Estilo visual con tonos pastel utilizando CSS.
+- **Inicio de sesión y registro de usuarios**: Los usuarios pueden crear cuentas, iniciar sesión y gestionar su perfil.
+- **Dificultades**: Tres niveles de dificultad: Fácil, Medio y Difícil.
+- **Puntuaciones**: Se almacenan las puntuaciones promedio de cada usuario por nivel de dificultad.
+- **Preguntas aleatorias**: Las preguntas se seleccionan aleatoriamente de la base de datos.
+- **Interfaz gráfica**: Diseñada con JavaFX para una experiencia de usuario amigable.
 
 ## Requisitos
 
-- **Java**: JDK 17 o superior.
-- **Maven**: Para gestionar las dependencias y construir el proyecto.
-- **SQLite**: Base de datos integrada.
+- **Java 17** o superior.
+- **Maven** para gestionar las dependencias.
+- **SQLite** como base de datos.

@@ -55,9 +55,9 @@ public class UserModel extends DatabaseModel {
             preparedStatement.setString(2, user.getPassword());
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    String nameStr = resultSet.getString("name");
-                    String passwordStr = resultSet.getString("password");
-                    return Optional.of(new User(nameStr, passwordStr));
+                    String name = resultSet.getString("name");
+                    String password = resultSet.getString("password");
+                    return Optional.of(new User(name, password));
                 }
             }
         } catch (SQLException e) {

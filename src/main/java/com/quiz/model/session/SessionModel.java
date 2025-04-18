@@ -47,6 +47,7 @@ public class SessionModel {
 
     /**
      * Muestra ek nivel de la sesion.
+     * 
      * @return retorna el nivel de la sesion.
      */
     public static String getLevel() {
@@ -54,7 +55,28 @@ public class SessionModel {
     }
 
     /**
+     * Muestra la puntuacion media del usuario segun la dificultad seleccionada.
+     * @return retorna la puntuacion media.
+     */
+    public static String getAccuracyPercentage() {
+        if (user == null || level == null) {
+            return "0.0%";
+        }
+        switch (level.toLowerCase()) {
+            case "easy":
+                return user.getEasyAccuracy() + "%";
+            case "medium":
+                return user.getMediumAccuracy() + "%";
+            case "hard":
+                return user.getHardAccuracy() + "%";
+            default:
+                return "0.0%";
+        }
+    }
+
+    /**
      * Cambia el nivel de la sesion.
+     * 
      * @param level nivel a cambiar.
      */
     public static void setLevel(String level) {

@@ -10,6 +10,9 @@ public class User {
 
     private String name;
     private String password;
+    private float easyAccuracy;
+    private float mediumAccuracy;
+    private float hardAccuracy;
 
     /**
      * Constructor por defecto.
@@ -18,14 +21,31 @@ public class User {
     }
 
     /**
-     * Constructor general.
-     * 
-     * @param nombre      nombre del usuario.
-     * @param contrasenia contrasenia del usuario.
+     * Constructor solo con nombre y contrasenia.
+     * @param name nombre del usuario.
+     * @param password contrasenia del usuario.
      */
     public User(String name, String password) {
         this.name = name;
         this.password = password;
+    }
+
+    /**
+     * Constructor general.
+     * 
+     * @param name                nombre del usuario.
+     * @param password            contrasenia del usuario.
+     * @param easyAccuracy   porcentaje de acierto para nivel facil.
+     * @param mediumAccuracy porcentaje de acierto para nivel medio.
+     * @param hardAccuracy   porcentaje de acierto para nivel dificil.
+     */
+    public User(String name, String password, float easyAccuracy, float mediumAccuracy,
+            float hardAccuracy) {
+        this.name = name;
+        this.password = password;
+        this.easyAccuracy = easyAccuracy;
+        this.mediumAccuracy = mediumAccuracy;
+        this.hardAccuracy = hardAccuracy;
     }
 
     public String getName() {
@@ -42,6 +62,30 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public float getEasyAccuracy() {
+        return this.easyAccuracy;
+    }
+
+    public void setEasyAccuracy(float easyAccuracy) {
+        this.easyAccuracy = easyAccuracy;
+    }
+
+    public float getMediumAccuracy() {
+        return this.mediumAccuracy;
+    }
+
+    public void setMediumAccuracy(float mediumAccuracy) {
+        this.mediumAccuracy = mediumAccuracy;
+    }
+
+    public float getHardAccuracy() {
+        return this.hardAccuracy;
+    }
+
+    public void setHardAccuracy(float hardAccuracy) {
+        this.hardAccuracy = hardAccuracy;
     }
 
     @Override
@@ -62,7 +106,13 @@ public class User {
 
     @Override
     public String toString() {
-        return getName() + ", " + getPassword();
+        return "{" +
+            " name='" + getName() + "'" +
+            ", password='" + getPassword() + "'" +
+            ", easyAccuracy='" + getEasyAccuracy() + "'" +
+            ", mediumAccuracy='" + getMediumAccuracy() + "'" +
+            ", hardAccuracy='" + getHardAccuracy() + "'" +
+            "}";
     }
 
 }

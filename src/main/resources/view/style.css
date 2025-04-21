@@ -1,7 +1,7 @@
 /* Estilo global para todos los textos */
 Text {
     -fx-font-family: "Arial", sans-serif;
-    -fx-font-size: 14px;
+    -fx-font-size: 12px;
     -fx-fill: #5d5d5d; /* Gris suave */
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 2, 0.5, 0, 1); /* Sombra ligera */
     -fx-text-alignment: center;
@@ -9,7 +9,7 @@ Text {
 
 /* Estilo específico para el texto del usuario */
 #textUser {
-    -fx-font-size: 16px;
+    -fx-font-size: 12px;
     -fx-font-weight: bold;
     -fx-fill: #6c8ebf; /* Azul pastel */
     -fx-effect: dropshadow(gaussian, rgba(108, 142, 191, 0.3), 4, 0.5, 0, 2); /* Sombra azul pastel */
@@ -17,7 +17,7 @@ Text {
 
 /* Estilo para los textos de respuestas y aciertos */
 #textAnswers, #textHits {
-    -fx-font-size: 14px;
+    -fx-font-size: 12px;
     -fx-fill: #7cbf7c; /* Verde pastel */
     -fx-font-weight: bold;
     -fx-effect: dropshadow(gaussian, rgba(124, 191, 124, 0.3), 3, 0.5, 0, 1); /* Sombra verde pastel */
@@ -25,7 +25,7 @@ Text {
 
 /* Estilo para el temporizador */
 #textTime {
-    -fx-font-size: 14px;
+    -fx-font-size: 12px;
     -fx-fill: #bf7c7c; /* Rojo pastel */
     -fx-font-weight: bold;
     -fx-effect: dropshadow(gaussian, rgba(191, 124, 124, 0.3), 4, 0.5, 0, 2); /* Sombra roja pastel */
@@ -33,7 +33,7 @@ Text {
 
 /* Estilo para las preguntas */
 #textQuestion {
-    -fx-font-size: 14px;
+    -fx-font-size: 12px;
     -fx-fill: #5d5d5d; /* Gris suave */
     -fx-font-weight: bold;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 3, 0.5, 0, 1); /* Sombra ligera */
@@ -49,7 +49,7 @@ Text {
     -fx-border-color: #d9e4ff; /* Azul claro */
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
-    -fx-padding: 8px 15px;
+    -fx-padding: 8px 12px;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0.5, 0, 1);
     -fx-transition: all 0.3s ease-in-out;
     -fx-opacity: 1; /* Asegúrate de que los botones sean visibles */
@@ -120,7 +120,7 @@ Text {
 
 /* Estilo específico para el texto del usuario */
 #textUser {
-    -fx-font-size: 16px;
+    -fx-font-size: 12px;
     -fx-font-weight: bold;
     -fx-fill: #6c8ebf; /* Azul pastel */
     -fx-effect: dropshadow(gaussian, rgba(108, 142, 191, 0.3), 4, 0.5, 0, 2); /* Sombra azul pastel */
@@ -128,7 +128,7 @@ Text {
 
 /* Estilo para los textos de respuestas y aciertos */
 #textAnswers, #textHits {
-    -fx-font-size: 14px;
+    -fx-font-size: 12px;
     -fx-fill: #7cbf7c; /* Verde pastel */
     -fx-font-weight: bold;
     -fx-effect: dropshadow(gaussian, rgba(124, 191, 124, 0.3), 3, 0.5, 0, 1); /* Sombra verde pastel */
@@ -136,7 +136,7 @@ Text {
 
 /* Estilo para el temporizador */
 #textTime {
-    -fx-font-size: 14px;
+    -fx-font-size: 12px;
     -fx-fill: #bf7c7c; /* Rojo pastel */
     -fx-font-weight: bold;
     -fx-effect: dropshadow(gaussian, rgba(191, 124, 124, 0.3), 4, 0.5, 0, 2); /* Sombra roja pastel */
@@ -144,7 +144,7 @@ Text {
 
 /* Estilo para las preguntas */
 #textQuestion {
-    -fx-font-size: 14px;
+    -fx-font-size: 12px;
     -fx-fill: #5d5d5d; /* Gris suave */
     -fx-font-weight: bold;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 3, 0.5, 0, 1); /* Sombra ligera */
@@ -160,7 +160,7 @@ Text {
     -fx-border-color: #d9e4ff; /* Azul claro */
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
-    -fx-padding: 8px 15px;
+    -fx-padding: 8px 12px;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0.5, 0, 1);
     -fx-transition: all 0.3s ease-in-out;
     -fx-opacity: 1; /* Asegúrate de que los botones sean visibles */

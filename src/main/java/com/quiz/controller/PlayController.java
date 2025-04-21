@@ -8,6 +8,7 @@ import com.quiz.model.UserModel;
 import com.quiz.model.session.SessionModel;
 
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -21,8 +22,6 @@ import javafx.util.Duration;
  */
 public class PlayController extends ScreenController {
 
-    @FXML
-    private Text textUser;
     @FXML
     private Text textPoint;
     @FXML
@@ -45,6 +44,7 @@ public class PlayController extends ScreenController {
     private QuestionModel questionModel;
     private Question question;
     private Timeline timeline;
+    private int timeRemaining;
 
     public PlayController() {
         this.answers = 0;
@@ -53,9 +53,9 @@ public class PlayController extends ScreenController {
 
     @FXML
     public void initialize() {
+        timeRemaining = 0;
         questionModel = new QuestionModel();
         question = questionModel.getRandomQuestion();
-        textUser.setText(SessionModel.getUser().getName());
         textPoint.setText("Respuestas: " + answers.toString() + "/10");
         textQuestion.setText(question.getQuestionText());
         buttonAnswer1.setText(question.getAnswer1());
@@ -63,19 +63,18 @@ public class PlayController extends ScreenController {
         buttonAnswer3.setText(question.getAnswer3());
         buttonAnswer4.setText(question.getAnswer4());
 
-        final int[] timeRemaining = new int[1];
         switch (SessionModel.getLevel().toLowerCase()) {
             case "easy":
-                timeRemaining[0] = 60;
+                timeRemaining = 60;
                 break;
             case "medium":
-                timeRemaining[0] = 40;
+                timeRemaining = 40;
                 break;
             case "hard":
-                timeRemaining[0] = 20;
+                timeRemaining = 20;
                 break;
             default:
-                timeRemaining[0] = 40;
+                timeRemaining = 40;
                 break;
         }
 
@@ -84,10 +83,10 @@ public class PlayController extends ScreenController {
         timeline = new Timeline(new javafx.animation.KeyFrame(
                 Duration.seconds(1),
                 event -> {
-                    timeRemaining[0]--;
+                    timeRemaining--;
                     textTime.setText("Tiempo: " + timeRemaining + "s");
 
-                    if (timeRemaining[0] <= 0) {
+                    if (timeRemaining <= 0) {
                         timeline.stop();
                         endGame(false);
                     }
@@ -164,18 +163,20 @@ public class PlayController extends ScreenController {
      * @param victory si es true el usuario gana.
      */
     private void endGame(boolean victory) {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        if (victory) {
-            alert.setTitle("¡Juego terminado!");
-            alert.setHeaderText(null);
-            alert.setContentText("¡Has ganado! Respuestas correctas: " + hits);
-        } else {
-            alert.setTitle("¡Tiempo agotado!");
-            alert.setHeaderText(null);
-            alert.setContentText("Has perdido. Respuestas correctas: " + hits);
-        }
-        alert.showAndWait();
-        buttonReturnClick();
+        Platform.runLater(() -> {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            if (victory) {
+                alert.setTitle("¡Juego terminado!");
+                alert.setHeaderText(null);
+                alert.setContentText("Respuestas correctas: " + hits);
+            } else {
+                alert.setTitle("¡Tiempo agotado!");
+                alert.setHeaderText(null);
+                alert.setContentText("Has perdido. Respuestas correctas: " + hits);
+            }
+            alert.showAndWait();
+            buttonReturnClick();
+        });
     }
 
 }

@@ -1,17 +1,21 @@
-# Quiz Game
+# Quiz App
 
-¡Bienvenido a **Quiz Game**! Este es un juego de preguntas y respuestas desarrollado en Java utilizando JavaFX para la interfaz gráfica y SQLite como base de datos.
+![Quiz Logo](src/main/resources/img/quiz.png)
+
+## Descripción
+
+Quiz App es una aplicación interactiva desarrollada en JavaFX que permite a los usuarios crear cuentas, iniciar sesión y participar en un juego de preguntas y respuestas. La aplicación incluye funcionalidades como selección de nivel, seguimiento de puntuaciones y gestión de perfiles.
 
 ## Características
 
-- **Inicio de sesión y registro de usuarios**: Los usuarios pueden crear cuentas, iniciar sesión y gestionar su perfil.
-- **Dificultades**: Tres niveles de dificultad: Fácil, Medio y Difícil.
-- **Puntuaciones**: Se almacenan las puntuaciones promedio de cada usuario por nivel de dificultad.
-- **Preguntas aleatorias**: Las preguntas se seleccionan aleatoriamente de la base de datos.
-- **Interfaz gráfica**: Diseñada con JavaFX para una experiencia de usuario amigable.
+- **Creación de usuarios**: Los usuarios pueden registrarse con un nombre y contraseña.
+- **Inicio de sesión**: Los usuarios pueden iniciar sesión para acceder a sus datos y jugar.
+- **Juego de preguntas**: Responde preguntas aleatorias y acumula puntos.
+- **Gestión de perfiles**: Actualiza tu información o elimina tu cuenta.
+- **Selección de nivel**: Elige entre niveles de dificultad (Fácil, Medio, Difícil).
 
 ## Requisitos
 
-- **Java 17** o superior.
-- **Maven** para gestionar las dependencias.
-- **SQLite** como base de datos.
+- **Java**: Versión 17 o superior.
+- **Maven**: Para gestionar las dependencias.
+- **SQLite**: Base de datos utilizada para almacenar usuarios y preguntas.

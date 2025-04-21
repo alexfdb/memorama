@@ -45,7 +45,6 @@ public class PlayController extends ScreenController {
     private QuestionModel questionModel;
     private Question question;
     private Timeline timeline;
-    private int timeRemaining;
 
     public PlayController() {
         this.answers = 0;
@@ -64,18 +63,19 @@ public class PlayController extends ScreenController {
         buttonAnswer3.setText(question.getAnswer3());
         buttonAnswer4.setText(question.getAnswer4());
 
+        final int[] timeRemaining = new int[1];
         switch (SessionModel.getLevel().toLowerCase()) {
             case "easy":
-                timeRemaining = 60;
+                timeRemaining[0] = 60;
                 break;
             case "medium":
-                timeRemaining = 40;
+                timeRemaining[0] = 40;
                 break;
             case "hard":
-                timeRemaining = 20;
+                timeRemaining[0] = 20;
                 break;
             default:
-                timeRemaining = 40;
+                timeRemaining[0] = 40;
                 break;
         }
 
@@ -84,10 +84,10 @@ public class PlayController extends ScreenController {
         timeline = new Timeline(new javafx.animation.KeyFrame(
                 Duration.seconds(1),
                 event -> {
-                    timeRemaining--;
+                    timeRemaining[0]--;
                     textTime.setText("Tiempo: " + timeRemaining + "s");
 
-                    if (timeRemaining <= 0) {
+                    if (timeRemaining[0] <= 0) {
                         timeline.stop();
                         endGame(false);
                     }

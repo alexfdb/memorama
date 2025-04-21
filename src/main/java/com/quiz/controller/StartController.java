@@ -63,9 +63,9 @@ public class StartController extends ScreenController {
      * @return retorna true si estas son validas.
      */
     private boolean validateCredentials() {
-        return (textFieldUser != null && textFieldUser.getText() != null && !textFieldUser.getText().isBlank() &&
+        return (textFieldUser != null && textFieldUser.getText() != null && !textFieldUser.getText().trim().isBlank() &&
                 passwordFieldPassword != null && passwordFieldPassword.getText() != null
-                && !passwordFieldPassword.getText().isBlank());
+                && !passwordFieldPassword.getText().trim().isBlank());
     }
 
 }

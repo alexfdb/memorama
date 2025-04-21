@@ -5,6 +5,7 @@ import com.quiz.model.User;
 import com.quiz.model.UserModel;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -46,6 +47,13 @@ public class CreateController extends ScreenController {
         UserModel userModel = new UserModel();
         if (userModel.createUser(user)) {
             textMessage.setText("Usuario creado con exito");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Éxito");
+            alert.setHeaderText(null);
+            alert.setContentText("Sesión creada con éxito. Redirigiendo a la pantalla de inicio...");
+            alert.showAndWait();
+
+            startScreen(buttonStart);
             return;
         }
         textMessage.setText("Usuario no pudo crearse");
@@ -65,11 +73,11 @@ public class CreateController extends ScreenController {
      * @return retorna true si estas son validas.
      */
     private boolean validateCredentials() {
-        return (textFieldUser != null && textFieldUser.getText() != null && !textFieldUser.getText().isBlank() &&
+        return (textFieldUser != null && textFieldUser.getText() != null && !textFieldUser.getText().trim().isBlank() &&
                 passwordFieldPassword != null && passwordFieldPassword.getText() != null
-                && !passwordFieldPassword.getText().isBlank() &&
+                && !passwordFieldPassword.getText().trim().isBlank() &&
                 passwordFieldRepeatPassword != null && passwordFieldRepeatPassword.getText() != null
-                && !passwordFieldRepeatPassword.getText().isBlank());
+                && !passwordFieldRepeatPassword.getText().trim().isBlank());
     }
 
 }

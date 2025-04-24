@@ -1,4 +1,4 @@
-module com.memorama {
+module com.quiz {
     requires javafx.fxml;
     requires javafx.controls;
     requires transitive java.sql;
